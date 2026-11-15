@@ -831,7 +831,7 @@ public class ExtensionTests
     [TestMethod]
     public void DefaultSourcesAreTheTwoRepositories()
     {
-        CollectionAssert.AreEqual(new[] { "mahach666/PilotLookUp", "mahach666/DynamoPilot" }, ExtensionSource.Defaults.Select(s => s.Repo).ToArray());
+        CollectionAssert.AreEqual(new[] { "PilotOpenTools/PilotLookUp", "PilotOpenTools/DynamoPilot" }, ExtensionSource.Defaults.Select(s => s.Repo).ToArray());
         CollectionAssert.AreEqual(new[] { "PilotLookUp", "DynamoPilot.App" }, ExtensionSource.Defaults.Select(s => s.FolderName).ToArray());
         Assert.AreEqual(ExtensionSource.Defaults.Count, ExtensionSource.Defaults.Select(s => s.Id).Distinct().Count());
     }

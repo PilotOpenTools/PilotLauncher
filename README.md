@@ -141,3 +141,11 @@ dotnet test tests\PilotLauncher.Core.Tests --filter TestCategory=Live
 
 - [docs/design.md](docs/design.md): устройство, что проверено и что нет.
 - [CHANGELOG.md](CHANGELOG.md): что вошло в релизы.
+
+## Участие
+
+Правила участия: [CONTRIBUTING.md](https://github.com/PilotOpenTools/.github/blob/main/CONTRIBUTING.md). Кодекс поведения: [CODE_OF_CONDUCT.md](https://github.com/PilotOpenTools/.github/blob/main/CODE_OF_CONDUCT.md).
+
+## Лицензия
+
+Проект распространяется по лицензии [Apache 2.0](LICENSE).

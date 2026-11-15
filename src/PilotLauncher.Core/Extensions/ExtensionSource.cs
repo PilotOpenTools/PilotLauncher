@@ -8,9 +8,9 @@ public sealed record ExtensionSource(string Id, string DisplayName, string Repo,
 {
     public static readonly IReadOnlyList<ExtensionSource> Defaults =
     [
-        new("pilotlookup", "PilotLookUp", "mahach666/PilotLookUp", "PilotLookUp.zip", "PilotLookUp",
+        new("pilotlookup", "PilotLookUp", "PilotOpenTools/PilotLookUp", "PilotLookUp.zip", "PilotLookUp",
             "Просмотр объектов Pilot для разработчиков и администраторов"),
-        new("dynamopilot", "DynamoPilot", "mahach666/DynamoPilot", "DynamoPilot.App.zip", "DynamoPilot.App",
+        new("dynamopilot", "DynamoPilot", "PilotOpenTools/DynamoPilot", "DynamoPilot.App.zip", "DynamoPilot.App",
             "Dynamo внутри Pilot: узлы для работы с объектами Pilot"),
     ];
 

@@ -13,7 +13,7 @@ namespace PilotLauncher.Core.Update;
 public sealed class LauncherUpdater
 {
     /// <summary>The installer asset is the same exe as the one in the portable zip, so it serves both.</summary>
-    public static readonly ExtensionSource Source = new("launcher", "Pilot Launcher", "mahach666/PilotLauncher", "PilotLauncher-Setup.exe", "", "");
+    public static readonly ExtensionSource Source = new("launcher", "Pilot Launcher", "PilotOpenTools/PilotLauncher", "PilotLauncher-Setup.exe", "", "");
 
     public static readonly Uri ReleasesPage = Source.ReleasesPage;
 

@@ -130,7 +130,7 @@ public class UpdateTests
                 updater.DownloadAsync(Release(NewExe, Sha(NewExe)), Path.Combine(dir, "PilotLauncher.exe"), null, CancellationToken.None));
 
             StringAssert.Contains(ex.Message, "Нет права записи");
-            StringAssert.Contains(ex.Message, "https://github.com/mahach666/PilotLauncher/releases");
+            StringAssert.Contains(ex.Message, "https://github.com/PilotOpenTools/PilotLauncher/releases");
         }
         finally
         {

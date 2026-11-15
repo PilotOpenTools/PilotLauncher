@@ -3,7 +3,7 @@ Creates the GitHub repository for PilotLauncher (or updates an existing one) wit
 master. Nothing is published unless you run it: the visibility has to be chosen explicitly.
 
   .\build\github-repo.ps1 -Visibility private -DryRun       shows what would be done
-  .\build\github-repo.ps1 -Visibility public                creates mahach666/PilotLauncher, sets description and topics
+  .\build\github-repo.ps1 -Visibility public                creates PilotOpenTools/PilotLauncher, sets description and topics
   .\build\github-repo.ps1 -Visibility public -Push          ... and pushes master
 
 Needs the GitHub CLI (gh) signed in with the "repo" scope. To publish a release afterwards, push a tag vX.Y.Z
@@ -12,7 +12,7 @@ Needs the GitHub CLI (gh) signed in with the "repo" scope. To publish a release 
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)][ValidateSet('public', 'private')][string]$Visibility,
-    [string]$Repo = 'mahach666/PilotLauncher',
+    [string]$Repo = 'PilotOpenTools/PilotLauncher',
     [switch]$Push,
     [switch]$DryRun
 )

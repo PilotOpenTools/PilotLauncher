@@ -24,7 +24,7 @@
 Требуется Windows x64 (Windows 10 1607 и новее или Windows 11; проверялось на Windows 11). Файлы лежат на странице Releases репозитория:
 
 - `PilotLauncher-Setup.exe` ставит лаунчер в `%LOCALAPPDATA%\Programs\PilotLauncher` без прав администратора: ярлык в меню «Пуск», запись в «Приложения». Удаление там же или `PilotLauncher.exe --uninstall`; скачанные версии и настройки при этом не удаляются.
-- `PilotLauncher-portable-win-x64.zip` содержит один exe и `portable.flag`, все данные лежат рядом с ним.
+- `PilotLauncher-portable-win-x64.zip` содержит `PilotLauncher.exe`, `portable.flag` и `README.txt`, все данные лежат рядом с ним (папка `data`).
 - `SHA256SUMS.txt` содержит контрольные суммы обоих файлов. Файлы не подписаны, поэтому Windows SmartScreen может предупредить при первом запуске.
 
 ## Как пользоваться
@@ -93,7 +93,7 @@
 - **Заметки о выпуске** берутся со страницы <https://help.pilotems.com/ru/Content/RelNotes.htm> (сервер не отдаёт `ETag`, поэтому копия считается свежей сутки). Редакции ICE Enterprise, ICE и ECM читают строки «Pilot-ICE Desktop», BIM читает «Pilot-BIM Desktop», myAdmin читает «Pilot-myAdmin Desktop». Версия ищется точно, а если её нет, по первым трём или двум числам при единственном совпадении.
 - **Сертификат help.pilotems.com.** Сайт отдаёт сертификат удостоверяющего центра Минцифры (Russian Trusted Root CA), которому Windows по умолчанию не доверяет. Тогда под предупреждением появляется кнопка «Установить»: она включает доверие этому корню только внутри лаунчера и только для help.pilotems.com, в Windows ничего не устанавливается. Корень встроен в программу (`src/PilotLauncher.Core/Net/russian_trusted_root_ca.crt`, источник <https://gu-st.ru/content/lending/russian_trusted_root_ca_pem.crt>, SHA-256 `D26D2D0231B7C39F92CC738512BA54103519E4405D68B5BD703E9788CA8ECF31`, действует до 28.02.2032) и при запуске сверяется с этим отпечатком. Отозвать доверие можно ссылкой в разделе «Что нового». Отзыв сертификата не проверяется.
 
-Режимы командной строки: `--launch <IceEnterprise|Ice|Bim|Ecm> <версия>` (запускают ярлыки), `--install`, `--uninstall`, `--admin ...` (служебный, вручную не вызывать).
+Режимы командной строки: `--launch <IceEnterprise|Ice|Bim|Ecm|MyAdmin> <версия>` (запускают ярлыки), `--install`, `--uninstall`, `--admin ...` (служебный, вручную не вызывать).
 
 ## Ограничения
 
@@ -120,6 +120,8 @@
 
 ## Сборка
 
+Требуется Windows и .NET SDK версии из `global.json` (10.0.100 или новее той же линейки); проекты собираются под `net10.0-windows` (`Directory.Build.props`).
+
 ```powershell
 dotnet build PilotLauncher.sln
 dotnet test PilotLauncher.sln                  # интеграционные тесты пропускаются, если нет установщиков Pilot
@@ -133,7 +135,7 @@ $env:PILOTLAUNCHER_LIVE_GITHUB = '1'
 dotnet test tests\PilotLauncher.Core.Tests --filter TestCategory=Live
 ```
 
-Релиз: добавить раздел версии в `CHANGELOG.md`, поставить тег `vX.Y.Z` и отправить его. Workflow `.github/workflows/release.yml` прогонит тесты, соберёт файлы и создаст GitHub Release с текстом из CHANGELOG; без записи в CHANGELOG он завершится ошибкой. Workflow `build.yml` собирает и тестирует каждый коммит в `master` и каждый pull request.
+Релиз: добавить раздел версии в `CHANGELOG.md`, поднять `<Version>` в `Directory.Build.props` и номер версии в первой строке `docs/design.md`, поставить тег `vX.Y.Z` и отправить его. Workflow `.github/workflows/release.yml` прогонит тесты, соберёт файлы с версией из тега (`build\publish.ps1 -Version`) и создаст GitHub Release с текстом из CHANGELOG; без записи в CHANGELOG он завершится ошибкой. Совпадение тега с `Directory.Build.props` workflow не проверяет. Workflow `build.yml` собирает и тестирует каждый коммит в `master` и каждый pull request.
 
 Репозиторий на GitHub вместе с описанием и темами создаёт `build\github-repo.ps1`: видимость нужно указать явно (`-Visibility public` или `private`), режим `-DryRun` только показывает команды, а `-Push` отправляет `master`.
 

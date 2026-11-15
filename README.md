@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/banner.png" alt="PilotLauncher" width="720"></p>
+
 # PilotLauncher
 
 Лаунчер версий Pilot. PilotLauncher скачивает версии из центра загрузок, распаковывает их без установки и запускает рядом друг с другом, каждую со своими настройками.
